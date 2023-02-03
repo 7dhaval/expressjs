@@ -95,13 +95,85 @@ const Playlist = new mongoose.model("Playlist", testschema);
 // multidocument();
 
 
-//reading query in mongodb
+//reading gtquery in mongodb
+// const getDocumnt = async() => {
+
+//     try{
+//     //you can find document using find() and filter query using find select and limit
+//     const resutlofread = await Playlist
+//     .find({ ctype: "Backend"})
+//     .select({name:1})
+//     .limit(1);
+//     console.log(resutlofread);
+//     }
+//     catch(err){
+//         console.log(err);
+//     }
+// }
+// getDocumnt();
+
+
+
+//comparison querys
+// const getDocumnt = async() => {
+
+//     try{
+//     //you can find document using find() and filter query using find select and limit
+//     const resutlofread = await Playlist
+//     //finding grater than query gt or lt
+//     // .find({videos : { $gt : 50}})
+//     //finding grater than or equal to for less than or equal too lte
+//     // .find({videos : { $gte : 8}})
+//     //using in operator & use nin = not in to not in document
+//     .find({ctype : {$in : ["Backend", ""]}})
+//     .select({name:1})
+//     // .limit(1);
+//     console.log(resutlofread);
+//     }
+//     catch(err){
+//         console.log(err);
+//     }
+// }
+// getDocumnt();
+
+
+//Logical Operators
+
+//$and = Joins query clauses with a logical AND returns all document that match the condition of both clauses.
+//$not = Invents the effect of a query expression and returns documents that do not match the qurey expression 
+//$nor = Joins query clauses with a logical NOR returns all documents that fails to match both clauses
+//$or = Joins query clauses with a logical OR returns all  documents that match the condition of either clauses.
+// const getDocumnt = async() => {
+
+//     try{
+//     //you can find document using find() and filter query using find select and limit
+//     const resutlofread = await Playlist
+//     .find({$or : [ {ctype : "Backend"} , {author: "dhavalsinh"}]})
+//     .select({name:1});
+//     // .limit(1);
+//     console.log(resutlofread);
+//     }
+//     catch(err){
+//         console.log(err);
+//     }
+// }
+// getDocumnt();
+
+
+//sorting and Count Query 
 const getDocumnt = async() => {
 
     try{
     //you can find document using find() and filter query using find select and limit
-    const resutlofread = await Playlist.find({ ctype: "Backend"}).select({name:1})
-    .limit(1);
+    const resutlofread = await Playlist
+    .find({$or : [ {ctype : "Backend"} , {author: "dhaval"}]})
+    .select({name:1})
+    // .count(); //this will give data of documents
+    // .countDocuments(); //this also
+    // .sort(); //ths will give how its will create in order
+    .sort("name : 1"); //this will give result in asending //replace 1 with -1 and this will give result in desending 
+
+    // .limit(1);
     console.log(resutlofread);
     }
     catch(err){
