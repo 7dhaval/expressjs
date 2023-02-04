@@ -161,23 +161,57 @@ const Playlist = new mongoose.model("Playlist", testschema);
 
 
 //sorting and Count Query 
-const getDocumnt = async() => {
+// const getDocumnt = async() => {
 
-    try{
-    //you can find document using find() and filter query using find select and limit
-    const resutlofread = await Playlist
-    .find({$or : [ {ctype : "Backend"} , {author: "dhaval"}]})
-    .select({name:1})
-    // .count(); //this will give data of documents
-    // .countDocuments(); //this also
-    // .sort(); //ths will give how its will create in order
-    .sort("name : 1"); //this will give result in asending //replace 1 with -1 and this will give result in desending 
+//     try{
+//     //you can find document using find() and filter query using find select and limit
+//     const resutlofread = await Playlist
+//     .find({$or : [ {ctype : "Backend"} , {author: "dhaval"}]})
+//     .select({name:1})
+//     // .count(); //this will give data of documents
+//     // .countDocuments(); //this also
+//     // .sort(); //ths will give how its will create in order
+//     .sort("name : 1"); //this will give result in asending //replace 1 with -1 and this will give result in desending 
 
-    // .limit(1);
-    console.log(resutlofread);
-    }
-    catch(err){
+//     // .limit(1);
+//     console.log(resutlofread);
+//     }
+//     catch(err){
+//         console.log(err);
+//     }
+// }
+// getDocumnt();
+
+
+//update document
+// const updateDocument =  async (_id) => {
+//   try{
+//     const result = await Playlist.findByIdAndUpdate({_id}, {
+//         $set : {
+//             name : "Javascript"
+//         }
+//     } , {
+//         new : true,
+//         useFindAndModify : false
+//     });
+//         console.log(result);
+//     }catch(err){
+//         console.log(err);
+//     }
+// }
+
+// updateDocument("<Document ID>");
+
+
+
+//delete the document
+const deleteDocument = async(_id) => {
+    try {
+    const result = await Playlist.findByIdAndDelete( {_id} );
+    console.log(result);
+    }catch(err){
         console.log(err);
     }
 }
-getDocumnt();
+
+deleteDocument("<document id>")
