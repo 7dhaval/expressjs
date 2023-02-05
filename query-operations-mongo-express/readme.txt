@@ -1,0 +1,1 @@
+npm i validotr to validate login page like email and all 

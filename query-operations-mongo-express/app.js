@@ -23,10 +23,34 @@ mongoose.connect("mongodb://127.0.0.1:27017/dhavaltest", {
 const testschema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        //validation lines//
+        unique : true,
+        lowercase:true,
+        //uppercase:true,
+        //trim: true,
+        //minlength: 5,
+        //maxlength: 12,
+
     },
-    ctype: String,
-    videos: Number,
+   // ctype: String, //before validation 
+   //using validation
+    ctype: {
+        type:String,
+        required: true,
+        lowercase: true,
+        //enum is not allowed to enter any value out of array
+        enum:["frontend", "backend",]
+    },
+    videos: {
+        type: Number,
+        validate(value){
+            if(value < 0 ){
+                throw new Error("Videos Count Should not negative");
+            }
+
+        }
+    },
     author: String,
     active: Boolean,
     date: {
